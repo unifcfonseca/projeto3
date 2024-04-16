@@ -7,9 +7,9 @@ ERROS criar(agenda contatos[], int *pos){
   if (*pos >= TOTAL)
     return MAX_AGENDA;
 
-  int telefone;
+  long telefone;
   printf("Entre com o numero de telefone: ");
-  scanf("%d", &telefone);
+  scanf("%ld", &telefone);
   contatos[*pos].telefone = telefone;
 
   clearBuffer();
@@ -40,6 +40,18 @@ ERROS deletar(agenda contatos[], int *pos){
 ERROS listar(agenda contatos[], int *pos){
   printf("Listar contatos\n");
 
+  if (*pos == 0){
+    return SEM_CONTATOS;
+  }
+
+  for (int i = 0; i < *pos; i++){
+    printf("Posição: %d\n", i+1);
+    printf("Nome: %s\t", contatos[i].nome);
+    printf("Sobrenome: %s\n", contatos[i].sobrenome);
+    printf("Telefone: %ld\t", contatos[i].telefone);
+    printf("Email: %s\n\n", contatos[i].email); 
+  }
+  
   return OK;
 }
 ERROS salvar(agenda contatos[], int *pos){
