@@ -4,7 +4,7 @@
 #define TOTAL 255
 
 typedef struct agenda{
-int telefone;
+long telefone;
 char nome[NOME_MAX];
 char sobrenome[SOBRENOME_MAX];
 char email[EMAIL_MAX];
