@@ -2,8 +2,10 @@
 #include "agenda.h"
 
 int main(){
-
+  agenda contatos[TOTAL];
   funcao fs[] = {criar, deletar, listar, salvar, carregar};
+  int pos;
+
   
   int opcao;
   do{
@@ -19,7 +21,7 @@ int main(){
         printf("Opção invalida!\n");
     }
     else if(opcao >= 0){
-        fs[opcao]();
+        fs[opcao](contatos,&pos);
     }else{
         printf("Sair...\n");
     }
