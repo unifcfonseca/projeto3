@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include "agenda.h"
 
 int main(){
+
+  funcao fs[] = {criar, deletar, listar, salvar, carregar};
+  
   int opcao;
   do{
     printf("\nMenu principal\n");
@@ -15,10 +19,10 @@ int main(){
         printf("Opção invalida!\n");
     }
     else if(opcao >= 0){
-        //chamar função
+        fs[opcao]();
     }else{
         printf("Sair...\n");
     }
-  }while(opcao!=0);
+  }while(opcao!=-1);
   
 }
