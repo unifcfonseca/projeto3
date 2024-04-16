@@ -2,18 +2,18 @@
 #include <stdio.h>
 
 
-ERROS criar(){
+ERROS criar(agenda contatos[], int *pos){
   printf("Criar contato\n");
 }
-ERROS deletar(){
+ERROS deletar(agenda contatos[], int *pos){
   printf("Deletar contato\n");
 }
-ERROS listar(){
+ERROS listar(agenda contatos[], int *pos){
   printf("Listar contatos\n");
 }
-ERROS salvar(){
+ERROS salvar(agenda contatos[], int *pos){
   printf("Salvar contatos\n");
 }
-ERROS carregar(){
+ERROS carregar(agenda contatos[], int *pos){
   printf("Carregar contatos\n");
 }
