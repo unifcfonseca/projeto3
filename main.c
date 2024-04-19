@@ -5,7 +5,9 @@ int main(){
   agenda contatos[TOTAL];
   funcao fs[] = {criar, deletar, listar, salvar, carregar};
   int pos;
-
+  ERROS erro = fs[4](contatos, &pos);
+  if(erro != OK)
+      pos = 0;
   
   int opcao;
   do{
@@ -21,10 +23,11 @@ int main(){
         printf("Opção invalida!\n");
     }
     else if(opcao >= 0){
-        fs[opcao](contatos,&pos);
+        erro=fs[opcao](contatos,&pos);
     }else{
         printf("Sair...\n");
     }
   }while(opcao!=-1);
-  
+  fs[3](contatos, &pos);
+  return OK;
 }

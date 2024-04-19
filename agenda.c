@@ -33,7 +33,38 @@ ERROS criar(agenda contatos[], int *pos){
 }
 
 ERROS deletar(agenda contatos[], int *pos){
-  printf("Deletar contato\n");
+  if(*pos == 0){
+    printf("Nenhum contato para deletar\n");
+    return SEM_CONTATOS;
+  }
+
+  long telefone_deletar;
+  int pos_DELETAR = -1;
+  printf("Entre com o telefone do contato a ser excluído: ");
+  scanf("%ld", &telefone_deletar);
+
+  for(int i = 0; i < *pos; i++){
+    if(contatos[i].telefone == telefone_deletar){
+      pos_DELETAR = i;
+      break;
+    }  
+  }
+
+  if(pos_DELETAR == -1){
+    printf("Contato com telefone %ld não encontrado\n", telefone_deletar);
+    return NAO_ENCONTRADO;
+  }
+
+  for(int i = pos_DELETAR; i < *pos - 1; i++){
+    strcpy(contatos[i].nome, contatos[i + 1].nome);
+    strcpy(contatos[i].sobrenome, contatos[i + 1].sobrenome);
+    strcpy(contatos[i].email, contatos[i + 1].email);
+    contatos[i].telefone = contatos[i + 1].telefone;
+  }
+
+  *pos = *pos - 1;
+
+  printf("Contato deletado com sucesso\n");
 
   return OK;
 }
