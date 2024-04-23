@@ -3,7 +3,6 @@
 #include <string.h>
 
 ERROS criar(agenda contatos[], int *pos){
-  printf("Criar contato\n");
   if (*pos >= TOTAL)
     return MAX_AGENDA;
 
@@ -69,8 +68,6 @@ ERROS deletar(agenda contatos[], int *pos){
   return OK;
 }
 ERROS listar(agenda contatos[], int *pos){
-  printf("Listar contatos\n");
-
   if (*pos == 0){
     return SEM_CONTATOS;
   }
@@ -86,12 +83,37 @@ ERROS listar(agenda contatos[], int *pos){
   return OK;
 }
 ERROS salvar(agenda contatos[], int *pos){
-  printf("Salvar contatos\n");
+  FILE *f = fopen("agenda.bin", "wb");
+  if(f == NULL)
+      return ABRIR;
+  int qtd = fwrite(contatos, TOTAL, sizeof(agenda), f);
+  if(qtd == 0)
+      return ESCREVER;
+
+  qtd = fwrite(pos, 1, sizeof(int), f);
+  if(qtd == 0)
+      return ESCREVER;
+
+  if(fclose(f))
+      return FECHAR;
 
   return OK;
 }
 ERROS carregar(agenda contatos[], int *pos){
-  printf("Carregar contatos\n");
+  FILE *f = fopen("agenda.bin", "rb");
+  if(f == NULL)
+      return ABRIR;
+
+  int qtd = fread(contatos, TOTAL, sizeof(agenda), f);
+  if(qtd == 0)
+      return LER;
+
+  qtd = fread(pos, 1, sizeof(int), f);
+  if(qtd == 0)
+      return LER;
+
+  if(fclose(f))
+      return FECHAR;
 
   return OK;
 }

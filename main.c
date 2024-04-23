@@ -6,6 +6,7 @@ int main(){
   funcao fs[] = {criar, deletar, listar, salvar, carregar};
   int pos;
   ERROS erro = fs[4](contatos, &pos);
+  
   if(erro != OK)
       pos = 0;
   
