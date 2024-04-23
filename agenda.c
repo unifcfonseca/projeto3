@@ -3,7 +3,7 @@
 #include <string.h>
 
 ERROS criar(agenda contatos[], int *pos){
-  printf("Criar contato\n");
+
   if (*pos >= TOTAL)
     return MAX_AGENDA;
 
@@ -69,7 +69,7 @@ ERROS deletar(agenda contatos[], int *pos){
   return OK;
 }
 ERROS listar(agenda contatos[], int *pos){
-  printf("Listar contatos\n");
+
 
   if (*pos == 0){
     return SEM_CONTATOS;
@@ -86,12 +86,12 @@ ERROS listar(agenda contatos[], int *pos){
   return OK;
 }
 ERROS salvar(agenda contatos[], int *pos){
-  printf("Salvar contatos\n");
+
 
   return OK;
 }
 ERROS carregar(agenda contatos[], int *pos){
-  printf("Carregar contatos\n");
+
 
   return OK;
 }
@@ -99,4 +99,35 @@ ERROS carregar(agenda contatos[], int *pos){
 void clearBuffer() {
   int c;
   while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void printErro(ERROS e){
+  switch(e){
+    case 0:
+    printf("OK\n");
+    break;
+      case 1:
+    printf("Maximo de contatos atingido!\n");
+    break;
+        case 2:
+    printf("Sem contatos no arquivo!\n");
+    break;
+          case 3:
+    printf("Contato não encontrado!\n");
+    break;
+            case 4:
+    printf("Erro ao abrir o arquivo!\n");
+    break;
+              case 5:
+    printf("Erro ao fechar o arquivo!\n");
+    break;
+                case 6:
+    printf("Erro ao escrever no arquivo!\n");
+    break;
+                  case 7:
+    printf("Erro ao ler o arquivo!\n");
+    break;
+    default:
+    printf("Erro desconhecido!\n");
+  }
 }
