@@ -11,7 +11,7 @@ char email[EMAIL_MAX];
 }agenda;
 
 
-typedef enum {OK, MAX_AGENDA, SEM_CONTATOS, NAO_ENCONTRADO, ABRIR, FECHAR, ESCREVER, LER,CRIAR} ERROS;
+typedef enum {OK, MAX_AGENDA, SEM_CONTATOS, NAO_ENCONTRADO, ABRIR, FECHAR, ESCREVER, LER} ERROS;
 
 typedef ERROS (*funcao)();
 
@@ -22,3 +22,5 @@ ERROS salvar(agenda contatos[], int *pos);
 ERROS carregar(agenda contatos[], int *pos);
 
 void clearBuffer();
+
+void printErro(ERROS e);
