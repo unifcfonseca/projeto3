@@ -7,6 +7,8 @@ int main(){
   int pos;
   ERROS erro = fs[4](contatos, &pos);
   if(erro != OK)
+      printf("Erro ao executar a operação.\n");
+      printErro(erro);
       pos = 0;
   
   int opcao;
@@ -23,11 +25,19 @@ int main(){
         printf("Opção invalida!\n");
     }
     else if(opcao >= 0){
-        erro=fs[opcao](contatos,&pos);
+        erro = fs[opcao](contatos,&pos);
+        if(erro !=OK){
+        printf("Erro ao executar a operação.\n");
+        printErro(erro);
+      }
     }else{
         printf("Sair...\n");
     }
   }while(opcao!=-1);
-  fs[3](contatos, &pos);
+  erro = fs[3](contatos, &pos);
+  if(erro !=OK){
+    printf("Erro ao executar a operação.\n");
+    printErro(erro);
+  }
   return OK;
 }
