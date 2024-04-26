@@ -7,11 +7,11 @@ int main(){
   int pos;
   ERROS erro = fs[4](contatos, &pos);
   
-  if(erro != OK)
+  if(erro != OK){
       printf("Erro ao executar a operação.\n");
       printErro(erro);
       pos = 0;
-  
+  }
   int opcao;
   do{
     printf("\nMenu principal\n");
