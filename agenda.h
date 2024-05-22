@@ -24,3 +24,5 @@ ERROS carregar(agenda contatos[], int *pos);
 void clearBuffer();
 
 void printErro(ERROS e);
+
+int validarEmail(char email[]);
