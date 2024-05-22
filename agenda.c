@@ -25,6 +25,13 @@ ERROS criar(agenda contatos[], int *pos){
   fgets(contatos[*pos].email, EMAIL_MAX, stdin);
   contatos[*pos].email[strcspn(contatos[*pos].email, "\n")] = '\0';
 
+  while(validarEmail(contatos[*pos].email) == 0){
+    printf("Email invalido!\n");
+    printf("Entre com o email: ");
+    fgets(contatos[*pos].email, EMAIL_MAX, stdin);
+    contatos[*pos].email[strcspn(contatos[*pos].email, "\n")] = '\0';
+  }
+
   *pos = *pos + 1;
 
   return OK;
@@ -122,6 +129,34 @@ ERROS carregar(agenda contatos[], int *pos){
 void clearBuffer() {
   int c;
   while ((c = getchar()) != '\n' && c != EOF);
+}
+
+int validarEmail(char email[]){
+  int tam = strlen(email);
+  int arroba = 0;
+  int posarroba;
+  int ponto = 0;
+  for(int i = 0; i < tam; i++){
+    if(email[i] == '@'){
+      arroba++;
+      posarroba = i;
+    }
+    if(email[i] == '.'){
+      ponto++;
+    }
+  }
+  int pontos[ponto];
+  int j = 0;
+  for(int i = 0; i < tam; i++){
+    if(email[i] == '.'){
+      pontos[j] = i;
+      j++;
+    }
+  }
+  if(arroba != 1 || posarroba==0 || ponto == 0 || pontos[0] == 0 || pontos[ponto - 1] == tam - 1 || pontos[0] < posarroba){
+    return 0;
+  }
+  return 1;
 }
 
 void printErro(ERROS e){
