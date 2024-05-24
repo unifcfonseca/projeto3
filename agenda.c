@@ -89,6 +89,82 @@ ERROS listar(agenda contatos[], int *pos){
   
   return OK;
 }
+ERROS editar(agenda contatos[], int *pos){
+  if(*pos == 0){
+    printf("Nenhum contato para editar\n");
+    return SEM_CONTATOS;
+  }
+
+  long telefone_editar;
+  int pos_EDITAR = -1;
+  printf("Entre com o telefone do contato a ser editado: ");
+  scanf("%ld", &telefone_editar);
+
+  for(int i = 0; i < *pos; i++){
+    if(contatos[i].telefone == telefone_editar){
+        pos_EDITAR = i;
+      break;
+    }  
+  }
+
+  if(pos_EDITAR == -1){
+    printf("Contato com telefone %ld não encontrado\n", telefone_editar);
+    return NAO_ENCONTRADO;
+  }
+  int opcaoEditar;
+  
+  while(opcaoEditar!=0){
+    
+    printf("Telefone: %ld\t", contatos[pos_EDITAR].telefone);
+    printf("Email: %s\n", contatos[pos_EDITAR].email); 
+    printf("Nome: %s\t", contatos[pos_EDITAR].nome);
+    printf("Sobrenome: %s\n\n", contatos[pos_EDITAR].sobrenome);
+
+    printf("Escolha uma opção:\n");
+    printf("1 - Editar nome\n");
+    printf("2 - Editar sobrenome\n");
+    printf("3 - Editar email\n");
+    printf("0 - Sair\n");
+    
+    scanf("%d", &opcaoEditar);
+    
+   
+    switch(opcaoEditar){
+      case 1:
+        clearBuffer();
+        printf("Entre com o novo nome: ");
+        fgets(contatos[pos_EDITAR].nome, NOME_MAX, stdin);
+        contatos[pos_EDITAR].nome[strcspn(contatos[pos_EDITAR].nome, "\n")] = '\0';
+        break;
+      case 2:
+        clearBuffer();
+        printf("Entre com o novo sobrenome: ");
+        fgets(contatos[pos_EDITAR].sobrenome, SOBRENOME_MAX, stdin);
+        contatos[pos_EDITAR].sobrenome[strcspn(contatos[pos_EDITAR].sobrenome, "\n")] = '\0';
+        break;
+      case 3:
+        clearBuffer();
+        printf("Entre com o novo email: ");
+        fgets(contatos[pos_EDITAR].email, EMAIL_MAX, stdin);
+        contatos[pos_EDITAR].email[strcspn(contatos[pos_EDITAR].email, "\n")] = '\0';
+        while(validarEmail(contatos[pos_EDITAR].email) == 0){
+          printf("Email invalido!\n");
+          printf("Entre com o email: ");
+          fgets(contatos[pos_EDITAR].email, EMAIL_MAX, stdin);
+          contatos[pos_EDITAR].email[strcspn(contatos[pos_EDITAR].email, "\n")] = '\0';
+        }
+        break;
+      case 0:
+        break;
+      default:
+        printf("Opção inválida!\n");
+        break;
+    }
+  }
+  printf("Contato editado com sucesso\n");
+
+  return OK;
+}
 ERROS salvar(agenda contatos[], int *pos){
   FILE *f = fopen("agenda.bin", "wb");
   if(f == NULL)

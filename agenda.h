@@ -18,6 +18,7 @@ typedef ERROS (*funcao)();
 ERROS criar(agenda contatos[], int *pos);
 ERROS deletar(agenda contatos[], int *pos);
 ERROS listar(agenda contatos[], int *pos);
+ERROS editar(agenda contatos[], int *pos);
 ERROS salvar(agenda contatos[], int *pos);
 ERROS carregar(agenda contatos[], int *pos);
 
