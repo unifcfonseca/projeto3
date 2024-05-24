@@ -1,16 +1,31 @@
 #include "agenda.h"
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 
-ERROS criar(agenda contatos[], int *pos){
-  if (*pos >= TOTAL)
-    return MAX_AGENDA;
+  ERROS criar(agenda contatos[], int *pos){
+    printf("Criar contato\n");
+    if (*pos >= TOTAL)
+      return MAX_AGENDA;
 
-  long telefone;
-  printf("Entre com o numero de telefone: ");
-  scanf("%ld", &telefone);
-  contatos[*pos].telefone = telefone;
+    long telefone;
+    bool telefoneExistente=false;
+    do{
+    printf("Entre com o numero de telefone: ");
+    scanf("%ld", &telefone);
 
+      telefoneExistente=false;
+
+      for(int i=0;i<*pos;i++){
+        if( contatos[i].telefone == telefone){
+            telefoneExistente=true;
+          printf("Telefone já em uso.Favor entre com outro número\n");
+          break;
+        }
+      } 
+    }while(telefoneExistente);
+
+    contatos[*pos].telefone = telefone;
   clearBuffer();
   
   printf("Entre com o primeiro nome: ");
