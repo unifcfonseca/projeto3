@@ -161,7 +161,7 @@ ERROS editar(agenda contatos[], int *pos){
         break;
     }
   }
-  printf("Contato editado com sucesso\n");
+  printf("Contato Editado com sucesso\n");
 
   return OK;
 }
